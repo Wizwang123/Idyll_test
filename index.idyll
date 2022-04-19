@@ -1,0 +1,47 @@
+[meta title:"Idyll_test" description:"Short description of your project" /]
+
+[Header
+  fullWidth:true
+  title:"The Ratings of Toy Story Dataset"
+  author:"Zeyu Wang"
+  date:"Apr 18, 2022"
+  background:"#222222"
+  color:"#ffffff"
+   /]
+
+
+#Toy Story Ratings
+
+[data name:"Toy_Story_dataset" source:"toy_story.csv" /]
+[Table data:Toy_Story_dataset /]
+
+
+This is the data I get from the the link: https://grouplens.org/datasets/movielens/. It includes about 1000 users 
+that rates from 0 to 5 of the movie "Toy Story". Users are maked with gender Male and Female, which we can calculate
+the average rating score of each gender. So that we can figure out whether male like this move more or female.
+
+
+[data name:"Gender_avg" source:"gender_avg.csv" /]
+
+
+[IdyllVegaLite data: Gender_avg spec:`{
+  width: 400,
+  height: 200,
+  mark: "bar",
+  encoding: {
+    x: {
+      field: "gender",
+      type: "nominal",
+      axis: {title: "Gender"}
+    },
+    y: {
+      field: "rating",
+      type: "quantitative",
+      axis: {title: "Rating"},
+      scale: { domain: [0, 5] }
+    }
+  }
+}` /]
+
+We can tell from the image that the rating of both gender is close, whcih is close to 4. This means that this movie
+is popular in both gender and there is no extend difference between them. And the overall rating of this movie is high.
